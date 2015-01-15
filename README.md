@@ -1,5 +1,5 @@
 # weChat
-1. 根据jfinal-weixin二次开发[http://jfinal.com](jfinal大家可以去支持他)
+1. 根据jfinal-weixin二次开发[jfinal大家可以去支持他](http://jfinal.com)
 2. 服务号与订阅号的开发
 3. 多号使用
 4. 主要决绝企业消息推送,与oa等程序配合使用
