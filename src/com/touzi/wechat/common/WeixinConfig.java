@@ -19,7 +19,10 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.touzi.log.Logs;
+import com.touzi.wechat.login.LoginInterceptor;
+import com.touzi.wechat.model.PublicAccount;
 import com.touzi.wechat.model.SysUser;
+import com.touzi.wechat.model.UserInfo;
 
 public class WeixinConfig extends JFinalConfig {
 	
@@ -69,13 +72,22 @@ public class WeixinConfig extends JFinalConfig {
 //		 me.add(ecp);
 		arp.addMapping("wechatSysUser", SysUser.class);//映射wechatSysUser表到SysUser模型(映射名字必须与数据库表名一致)
 		arp.addMapping("wechatSysLog", Logs.class);
-		 
+		arp.addMapping("wechatUserInfo", UserInfo.class);
+		arp.addMapping("wechatPublicAccount", PublicAccount.class);
 	}
 	
+	/**
+	 * 配置全局拦截器
+	 */
 	public void configInterceptor(Interceptors me) {
+		//登录拦截器
+		me.add(new LoginInterceptor());
 		
 	}
 	
+	/**
+	 * 配置处理器
+	 */
 	public void configHandler(Handlers me) {
 		
 	}

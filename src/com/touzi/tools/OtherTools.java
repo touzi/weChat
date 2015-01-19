@@ -4,16 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
-
-import com.jfinal.core.JFinal;
+import java.util.Random;
 
 /** 
  * @Title: OtherTools.java 
  * @Package com.touzi.tools 
- * @Description: TODO(添加描述) 
+ * @Description: TODO(1.MD5加密2.随机数) 
  * @author touzi 
  * @date 2014年11月10日 下午6:01:15 
  * @version V1.0 
@@ -36,6 +34,23 @@ public class OtherTools {
         } catch (NoSuchAlgorithmException e) {}
         return sb.toString();
 	}
+	
+	 /**
+     * 获取count个随机数
+     * @param count 随机数个数
+     * @return
+     */
+    public static String getRandom(int count){
+        StringBuffer sb = new StringBuffer();
+        String str = "0123456789";
+        Random r = new Random();
+        for(int i=0;i<count;i++){
+            int num = r.nextInt(str.length());
+            sb.append(str.charAt(num));
+            str = str.replace((str.charAt(num)+""), "");
+        }
+        return sb.toString();
+    }
 	
 	
 	
@@ -68,7 +83,7 @@ public class OtherTools {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		System.out.println(getMD5("touzi22".getBytes()));
+		System.out.println(getRandom(4));
 	}
 }
   

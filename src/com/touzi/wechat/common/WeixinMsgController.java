@@ -1,5 +1,6 @@
 package com.touzi.wechat.common;
 
+import com.jfinal.aop.ClearInterceptor;
 import com.jfinal.kit.PropKit;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.MsgController;
@@ -29,6 +30,8 @@ import com.jfinal.weixin.sdk.msg.out.OutVoiceMsg;
  * DemoController 继承自父类 WeixinController 的 index
  * 方法即可直接运行看效果，在此基础之上修改相关的方法即可进行实际项目开发
  */
+
+@ClearInterceptor
 public class WeixinMsgController extends MsgController {
 	
 	private static final String helpStr = "\t发送 help 可获得帮助，发送 \"美女\" 可看美女，发送 news 可看新闻，发送 music 可听音乐，你还可以试试发送图片、语音、位置、收藏等信息，看会有什么 。公众号持续更新中，想要更多惊喜欢迎每天关注 ^_^";

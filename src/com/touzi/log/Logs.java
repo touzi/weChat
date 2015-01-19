@@ -39,6 +39,11 @@ public class Logs extends Model<Logs> {
 		return find("select * from wechatSysLog order by id desc ");
 	}
 	
+	/**
+	 * session中的users
+	 * request
+	 * info内容
+	 */
 	public static void logInfo(Object users, HttpServletRequest request, String info) {
 		String ip = GetIP4.getIpAddr(request);
 		if(users != null){

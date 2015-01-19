@@ -1,6 +1,7 @@
 package com.touzi.wechat.model;  
 
 import com.jfinal.plugin.activerecord.Model;
+import com.touzi.tools.DateTools;
 import com.touzi.tools.OtherTools;
 
 /** 
@@ -37,6 +38,29 @@ public class SysUser extends Model<SysUser> {
 	public SysUser getUserNameAndPassWord(String userName, String passWord) {
 		String pwd = OtherTools.getMD5(passWord.getBytes());
 		return findFirst("select * from wechatSysUser where userName = ? and pwd = ? ",userName,pwd);
+	}
+	
+	/**
+	 * 保存注册用户信息
+	 */
+	public void mySave() {
+		String pw = OtherTools.getMD5(this.getStr("pwd").getBytes());
+		this.set("pwd", pw).set("isValid",1).set("score",0).set("inTime", DateTools.getCurrentDate());
+		this.save();
+	}
+	
+	/**
+	 * 验证email是否可用
+	 */
+	public boolean containEmail(String email) {
+		return me.findFirst("select email from wechatSysUser where email = ? limit 1 ",email) != null;
+	}
+	
+	/**
+	 * 验证用户名是否可用
+	 */
+	public boolean containUser(String userName) {
+		return me.findFirst("select userName from wechatSysUser where userName = ? limit 1 ",userName) != null;
 	}
 }
   
