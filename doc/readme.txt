@@ -10,3 +10,5 @@
 3. 当用户绑定微信公众号的时候将补全publicAccount表信息
 4. userInfo表信息做页面修改
 
+
+

@@ -1,7 +1,6 @@
 package com.touzi.wechat.common;
 
 import com.jfinal.aop.ClearInterceptor;
-import com.jfinal.kit.PropKit;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.MsgController;
 import com.jfinal.weixin.sdk.msg.in.InImageMsg;
@@ -21,6 +20,7 @@ import com.jfinal.weixin.sdk.msg.out.OutMusicMsg;
 import com.jfinal.weixin.sdk.msg.out.OutNewsMsg;
 import com.jfinal.weixin.sdk.msg.out.OutTextMsg;
 import com.jfinal.weixin.sdk.msg.out.OutVoiceMsg;
+import com.touzi.wechat.model.PublicAccount;
 
 /**
  * 接受微信用户发来的消息并处理
@@ -35,7 +35,7 @@ import com.jfinal.weixin.sdk.msg.out.OutVoiceMsg;
 public class WeixinMsgController extends MsgController {
 	
 	private static final String helpStr = "\t发送 help 可获得帮助，发送 \"美女\" 可看美女，发送 news 可看新闻，发送 music 可听音乐，你还可以试试发送图片、语音、位置、收藏等信息，看会有什么 。公众号持续更新中，想要更多惊喜欢迎每天关注 ^_^";
-	
+	PublicAccount pa = new PublicAccount();
 	/**
 	 * 如果要支持多公众账号，只需要在此返回各个公众号对应的  ApiConfig 对象即可
 	 * 可以通过在请求 url 中挂参数来动态从数据库中获取 ApiConfig 属性值
@@ -44,17 +44,34 @@ public class WeixinMsgController extends MsgController {
 		ApiConfig ac = new ApiConfig();
 		
 		// 配置微信 API 相关常量
-		ac.setToken(PropKit.get("token"));
-		ac.setAppId(PropKit.get("appId"));
-		ac.setAppSecret(PropKit.get("appSecret"));
+//		ac.setToken(PropKit.get("token"));
+//		ac.setAppId(PropKit.get("appId"));
+//		ac.setAppSecret(PropKit.get("appSecret"));
 		
 		/**
 		 *  是否对消息进行加密，对应于微信平台的消息加解密方式：
 		 *  1：true进行加密且必须配置 encodingAesKey
 		 *  2：false采用明文模式，同时也支持混合模式
 		 */
-		ac.setEncryptMessage(PropKit.getBoolean("encryptMessage", false));
-		ac.setEncodingAesKey(PropKit.get("encodingAesKey", "setting it in config file"));
+//		ac.setEncryptMessage(PropKit.getBoolean("encryptMessage", false));
+//		ac.setEncodingAesKey(PropKit.get("encodingAesKey", "setting it in config file"));
+		
+		/**
+		 * 根据微信传回来的URL的标识来判断是否与填写的内容匹配
+		 * 
+		 */
+		String urlValue = getPara();
+		pa = PublicAccount.me.findByweChat(urlValue);
+		ac.setToken(pa.getStr("token"));
+		ac.setAppId(pa.getStr("appId"));
+		ac.setAppSecret(pa.getStr("appSecret"));
+		if(null == pa.getStr("encodingAESKey") || "".equals(pa.getStr("encodingAESKey"))) {
+			ac.setEncryptMessage(false);
+			ac.setEncodingAesKey("setting it in config file");
+		}else {
+			ac.setEncryptMessage(true);
+			ac.setEncodingAesKey(pa.getStr("encodingAESKey"));
+		}
 		return ac;
 	}
 	
@@ -66,6 +83,7 @@ public class WeixinMsgController extends MsgController {
 	 */
 	protected void processInTextMsg(InTextMsg inTextMsg) {
 		String msgContent = inTextMsg.getContent().trim();
+		//String 
 		// 帮助提示
 		if ("help".equalsIgnoreCase(msgContent)) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
@@ -95,6 +113,10 @@ public class WeixinMsgController extends MsgController {
 			// outMsg.addNews("秀色可餐", "JFinal Weixin 极速开发就是这么爽，有木有 ^_^", "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq2GJLC60ECD7rE7n1cvKWRNFvOyib4KGdic3N5APUWf4ia3LLPxJrtyIYRx93aPNkDtib3ADvdaBXmZJg/0", "http://mp.weixin.qq.com/s?__biz=MjM5ODAwOTU3Mg==&mid=200987822&idx=1&sn=7eb2918275fb0fa7b520768854fb7b80#rd");
 			
 			render(outMsg);
+		}
+		//验证绑定
+		else if(pa.getStr("validCode").equalsIgnoreCase(msgContent)) {
+			renderOutTextMsg("验证成功!");
 		}
 		// 其它文本消息直接返回原值 + 帮助提示
 		else {

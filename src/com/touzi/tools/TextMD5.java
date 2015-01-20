@@ -1,10 +1,7 @@
 package com.touzi.tools;  
 
-import java.net.HttpRetryException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.eclipse.jetty.server.Request;
 
 /** 
  * @Title: TextMD5.java 

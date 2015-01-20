@@ -1,5 +1,8 @@
 package com.touzi.wechat.model;  
 
+import java.util.Date;
+import java.util.List;
+
 import com.jfinal.plugin.activerecord.Model;
 import com.touzi.tools.OtherTools;
 
@@ -24,6 +27,7 @@ import com.touzi.tools.OtherTools;
 | token          | varchar(255) | YES  |     | NULL    |                |令牌,需要与公众号后台同意,这里有系统生成,然后填写到微信后台
 | updateTime     | datetime     | YES  |     | NULL    |                |更新时间
 | url            | varchar(255) | YES  |     | NULL    |                |本地接口URL,带参数以便区分不同的用户的帐号
+| urlPara        | varchar(255) | YES  |     | NULL    |                |本地接口URL的参数,以便区分不同的用户的帐号
 | userName       | varchar(255) | YES  |     | NULL    |                |公众号名称
 | validCode      | varchar(255) | YES  |     | NULL    |                |验证码,用户匹配管理员的微信id
 | validState     | varchar(255) | YES  |     | NULL    |                |公众号所在地区
@@ -41,10 +45,40 @@ public class PublicAccount extends Model<PublicAccount> {
 	 */
 	public void mySave(Integer suId,String userName) {
 		String token = OtherTools.getMD5(userName.getBytes());
-		String url = "http://localhost/msg/"+OtherTools.getMD5(token.getBytes());
+		String urlPara = OtherTools.getMD5(token.getBytes());
+		String url = "http://localhost/msg/"+urlPara;
 		String validCode = OtherTools.getRandom(4);
-		this.set("sysUserId",suId).set("token",token).set("url",url).set("validCode",validCode);
+		this.set("sysUserId",suId).set("token",token).set("url",url).set("urlPara",urlPara).set("validCode",validCode).set("ticket","1");
 		this.save();
+	}
+	
+	/**
+	 * 根据用户id查询,公众号信息
+	 */
+	public PublicAccount findAllBySysUserId(Integer sysUserId) {
+		List<PublicAccount> result = find("select * from wechatPublicAccount where sysUserId = "+sysUserId);
+		return result.size() > 0 ? result.get(0) : null;
+	}
+	
+	/**
+	 * 根据微信回传的URL与参数查询数据库
+	 */
+	public PublicAccount findByweChat(String urlValue) {
+		String sql = "select * from wechatPublicAccount where urlPara = '"+urlValue+"'";
+		List<PublicAccount> result = find(sql);
+		return result.size() > 0 ? result.get(0) : null;
+	}
+	
+	/**
+	 * 生成授权(根据id更新appId,应用密钥,消息加解密密钥)
+	 */
+	public void myUpdate() {
+		if(null == this.getTimestamp("inTime") || "".equals(this.getTimestamp("inTime"))){
+			this.set("inTime", new Date());
+		}else {
+			this.set("updateTime", new Date());
+		}
+		this.update();
 	}
 }
   
