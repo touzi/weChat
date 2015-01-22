@@ -10,7 +10,7 @@ public class AdminRoutes extends Routes {
 	public void config() {
 		add("/admin",AdminIndexController.class,"/_back");
 		add("/login", LoginController.class, "/_back/login");
-		add("/publicAccount",PublicAccountController.class,"/_back");
+		add("/publicAccount",PublicAccountController.class,"/_back/publicAccount");
 	}
 	
 }

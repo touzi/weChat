@@ -23,14 +23,14 @@ import com.touzi.tools.OtherTools;
 | appSecret      | varchar(255) | YES  |     | NULL    |                |应用密钥,对应微信后台产生的,需填写
 | inTime         | datetime     | YES  |     | NULL    |                |绑定时间
 | pwd            | varchar(255) | YES  |     | NULL    |                |
-| ticket         | varchar(255) | YES  | UNI | NULL    |                |
+| ticket         | varchar(255) | YES  | UNI | NULL    |                |二维码信息
 | token          | varchar(255) | YES  |     | NULL    |                |令牌,需要与公众号后台同意,这里有系统生成,然后填写到微信后台
 | updateTime     | datetime     | YES  |     | NULL    |                |更新时间
 | url            | varchar(255) | YES  |     | NULL    |                |本地接口URL,带参数以便区分不同的用户的帐号
 | urlPara        | varchar(255) | YES  |     | NULL    |                |本地接口URL的参数,以便区分不同的用户的帐号
 | userName       | varchar(255) | YES  |     | NULL    |                |公众号名称
 | validCode      | varchar(255) | YES  |     | NULL    |                |验证码,用户匹配管理员的微信id
-| validState     | varchar(255) | YES  |     | NULL    |                |公众号所在地区
+| validState     | varchar(255) | YES  |     | NULL    |                |对接步骤
 | sysUserId      | int(11)      | YES  | MUL | NULL    |                |系统管理员id
 | encodingAESKey | varchar(255) | YES  |     | NULL    |                |消息加密密钥
 +----------------+--------------+------+-----+---------+----------------+
@@ -48,7 +48,8 @@ public class PublicAccount extends Model<PublicAccount> {
 		String urlPara = OtherTools.getMD5(token.getBytes());
 		String url = "http://localhost/msg/"+urlPara;
 		String validCode = OtherTools.getRandom(4);
-		this.set("sysUserId",suId).set("token",token).set("url",url).set("urlPara",urlPara).set("validCode",validCode).set("ticket","1");
+		String ticket = OtherTools.getMD5(new Date().toString().getBytes());
+		this.set("sysUserId",suId).set("token",token).set("url",url).set("urlPara",urlPara).set("validCode",validCode).set("ticket",ticket).set("validState","1");
 		this.save();
 	}
 	
@@ -78,6 +79,14 @@ public class PublicAccount extends Model<PublicAccount> {
 		}else {
 			this.set("updateTime", new Date());
 		}
+		this.update();
+	}
+	
+	/**
+	 * 授权成功更新AccountId
+	 */
+	public void accUpdate(PublicAccount pa, String toUserName) {
+		this.set("id",pa.getInt("id")).set("accountId",toUserName).set("updateTime", new Date());
 		this.update();
 	}
 }

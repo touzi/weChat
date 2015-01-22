@@ -4,39 +4,44 @@
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<!-- <link href="/css/manage.css" media="screen" rel="stylesheet"type="text/css" /> -->
-<!-- <script src="/js/jquery-1.4.4.min.js" type="text/javascript"></script> -->
+<!-- 兼容手机端 -->
+<meta name = "viewpoint" content = "width-device-width, intial-scale=1.0">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- Custom styles for this template -->
+<link href="/css/signin.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/js/jquery-1.11.2.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href="/css/dashboard.css">
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<script src="/js/ie-emulation-modes-warning.js"></script>
+<!-- 跳转提示 -->
+<script src="/js/utils.js"></script>
 <title>登录</title>
 </head>
 <body>
-	<div class="manage_container">
-<%-- 		<%@ include file="/common/_head.jsp"%> --%>
-		<div class="main">
-			<h1>用户管理---&gt;用户注册</h1>
-			<div class="form_box">
-				<form action="/login/inLogin" method="post">
-					<fieldset class="solid">
-						<legend>用户登录</legend>
-						<input type="hidden" name="goto" value="${url}" />
-						<div>
-							<label>用户名</label>
-							<input type="text" name="userName" value="${userName}" placeholder="用用户名来登录：)" />${userNameMsg}
-						</div>
-						<div>
-							<label>密码</label>
-							<input type="password" name="passWord" value="${passWord}" />${passWordMsg}
-						</div>
-						<div>
-							<label>&nbsp;</label>${msg}
-						</div>
-						<div>
-							<label>&nbsp;</label>
-							<input value="提交" type="submit">
-						</div>
-					</fieldset>
-				</form>
-			</div>
+	<div class="container">
+		<div>
+			<label>&nbsp;</label>${msg}
 		</div>
-	</div>
+      <form class="form-signin" role="form" action="/login/inLogin" method="post">
+      	<input type="hidden" name="goto" value="${url}" />
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="form-control" 
+        	name="userName" value="${userName}" placeholder="仅支持用户名：)" required autofocus/>${userNameMsg}
+        <input type="password" class="form-control" placeholder="密码" 
+        	name="passWord" value="${passWord}" required>${passWordMsg}
+<!--         <div class="checkbox"> -->
+<!--           <label> -->
+<!--             <input type="checkbox" value="remember-me"> Remember me -->
+<!--           </label> -->
+<!--         </div> -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit" 
+        onclick="showdiv('表达数据提交中<br/>请稍候........ <br/> ');">Sign in</button>
+      </form>
+    </div>
 </body>
 </html>

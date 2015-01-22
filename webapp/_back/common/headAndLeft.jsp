@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 兼容手机端 -->
+<meta name = "viewpoint" content = "width-device-width, intial-scale=1.0">
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
@@ -14,20 +16,21 @@
 <link rel="stylesheet" href="/css/dashboard.css">
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <script src="/js/ie-emulation-modes-warning.js"></script>
+<script src="/js/utils.js"></script>
 <title>weChatDevloper</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">weChatDevloper</a>
+          <a class="navbar-brand" href="">weChatDevloper</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="/login/logout">Logout</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -40,8 +43,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">配置授权</a></li>
-            <li><a href="#">Reports</a></li>
+            <li class="active"><a href="/publicAccount">配置授权</a></li>
+            <li><a href="#" >Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
@@ -62,3 +65,5 @@
     </div>
 </body>
 </html>
+<script>
+</script>

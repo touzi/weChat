@@ -94,5 +94,17 @@ public class LoginController extends Controller {
 		setAttr("msg", "注册成功,请登录!");
 		render("/_back/login/login.jsp");
 	}
+	
+	/**
+	 * @author touzi
+	 * TODO 清空session和cookie
+	 */
+	@Before(LoginInterceptor.class)
+	public void logout() {
+		Logs.logInfo(this.getSessionAttr("users"), getRequest(), "用户退出");
+		removeSessionAttr("users");
+		//removeCookie("userInfo");
+		redirect("/login");
+	}
 }
   

@@ -21,6 +21,7 @@ import com.jfinal.weixin.sdk.msg.out.OutNewsMsg;
 import com.jfinal.weixin.sdk.msg.out.OutTextMsg;
 import com.jfinal.weixin.sdk.msg.out.OutVoiceMsg;
 import com.touzi.wechat.model.PublicAccount;
+import com.touzi.wechat.model.UserInfo;
 
 /**
  * 接受微信用户发来的消息并处理
@@ -83,7 +84,9 @@ public class WeixinMsgController extends MsgController {
 	 */
 	protected void processInTextMsg(InTextMsg inTextMsg) {
 		String msgContent = inTextMsg.getContent().trim();
-		//String 
+		String toUserName = inTextMsg.getToUserName().trim();
+		String fromUserName = inTextMsg.getFromUserName();
+		
 		// 帮助提示
 		if ("help".equalsIgnoreCase(msgContent)) {
 			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
@@ -116,6 +119,8 @@ public class WeixinMsgController extends MsgController {
 		}
 		//验证绑定
 		else if(pa.getStr("validCode").equalsIgnoreCase(msgContent)) {
+			PublicAccount.me.accUpdate(pa, toUserName);
+			UserInfo.me.accUpdate(pa, toUserName, fromUserName);
 			renderOutTextMsg("验证成功!");
 		}
 		// 其它文本消息直接返回原值 + 帮助提示

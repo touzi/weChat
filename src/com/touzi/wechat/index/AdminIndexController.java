@@ -1,8 +1,6 @@
 package com.touzi.wechat.index;  
 
 import com.jfinal.core.Controller;
-import com.touzi.wechat.model.PublicAccount;
-import com.touzi.wechat.model.SysUser;
 
 /** 
  * @Title: AdminIndexController.java 
@@ -14,8 +12,6 @@ import com.touzi.wechat.model.SysUser;
  */
 public class AdminIndexController extends Controller {
 	public void index() {
-		SysUser su = this.getSessionAttr("users");
-		setAttr("publicAccount", PublicAccount.me.findAllBySysUserId(su.getInt("id")));
 		render("adminIndex.jsp");
 	}
 	

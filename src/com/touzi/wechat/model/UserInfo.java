@@ -1,5 +1,8 @@
 package com.touzi.wechat.model;  
 
+import java.util.Date;
+import java.util.List;
+
 import com.jfinal.plugin.activerecord.Model;
 
 /** 
@@ -43,6 +46,24 @@ public class UserInfo extends Model<UserInfo> {
 	public void mySave(Integer suId,Integer paId) {
 		this.set("sysUserId",suId).set("groupId",2).set("publicAccountId",paId);
 		this.save();
+	}
+	
+	/**
+	 * 根据publicAccount的id查出userInfo信息
+	 */
+	public UserInfo findByPublicAccountId(Integer paId) {
+		List<UserInfo> result = find("select * from wechatUserInfo where publicAccountId = '"+paId+"'");
+		return result.size() > 0 ? result.get(0) : null;
+	}
+	
+	/**
+	 * 验证码验证成功后更新userInfo
+	 */
+	public void accUpdate(PublicAccount pa, String toUserName, String fromUserName) {
+		UserInfo ui = new UserInfo();
+		ui = me.findByPublicAccountId(pa.getInt("id"));
+		this.set("id",ui.getInt("id")).set("openId",fromUserName).set("subscribe","true").set("subscribeTime",new Date()).set("wechatOpenId",toUserName);
+		this.update();
 	}
 }
   

@@ -2,6 +2,7 @@ package com.touzi.wechat.public_account;
 
 import com.jfinal.core.Controller;
 import com.touzi.wechat.model.PublicAccount;
+import com.touzi.wechat.model.SysUser;
 
 /** 
  * @Title: PublicAccountController.java 
@@ -16,7 +17,9 @@ import com.touzi.wechat.model.PublicAccount;
  */
 public class PublicAccountController extends Controller {
 	public void index() {
-		redirect("/admin");
+		SysUser su = this.getSessionAttr("users");
+		setAttr("publicAccount", PublicAccount.me.findAllBySysUserId(su.getInt("id")));
+		render("publicAccount.jsp");
 	}
 	
 	
