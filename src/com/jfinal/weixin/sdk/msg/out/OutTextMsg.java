@@ -15,7 +15,7 @@ import com.jfinal.weixin.sdk.msg.in.InMsg;
 		<FromUserName><![CDATA[fromUser]]></FromUserName>
 		<CreateTime>12345678</CreateTime>
 		<MsgType><![CDATA[text]]></MsgType>
-			<Content><![CDATA[你好]]></Content>
+		<Content><![CDATA[你好]]></Content>
 	</xml>
  */
 public class OutTextMsg extends OutMsg {

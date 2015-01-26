@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Random;
 
 /** 
@@ -82,8 +83,34 @@ public class OtherTools {
 		return lines;
 	}
 	
+	/**
+	 * 
+	 * @author touzi
+	 * @dateTime 2015年1月23日下午4:43:01
+	 * @Title: main 
+	 * @Description: TODO(list转换成string) 
+	 * @param @param args
+	 * @param @throws IOException    设定文件 
+	 * @return void    返回类型 
+	 * @throws
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static String listToString(List list) {
+		//创建数组，长度为list的长度 
+		String[] str = new String[list.size()];
+		String sx = "";
+		//list转化成数组，也可以看成是list复制到数组中
+		list.toArray(str);
+		//循环遍历 
+		for(String s : str){ 
+			sx += s+"|";
+			System.out.println(s); 
+		}
+		return sx;
+	}
+	
+	
 	public static void main(String[] args) throws IOException {
-		System.out.println(getRandom(4));
 	}
 }
   

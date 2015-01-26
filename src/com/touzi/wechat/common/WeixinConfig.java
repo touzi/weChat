@@ -21,6 +21,7 @@ import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.touzi.log.Logs;
 import com.touzi.wechat.login.LoginInterceptor;
 import com.touzi.wechat.model.PublicAccount;
+import com.touzi.wechat.model.ReqMsgLog;
 import com.touzi.wechat.model.SysUser;
 import com.touzi.wechat.model.UserInfo;
 
@@ -71,9 +72,10 @@ public class WeixinConfig extends JFinalConfig {
 //		 EhCachePlugin ecp = new EhCachePlugin();
 //		 me.add(ecp);
 		arp.addMapping("wechatSysUser", SysUser.class);//映射wechatSysUser表到SysUser模型(映射名字必须与数据库表名一致)
-		arp.addMapping("wechatSysLog", Logs.class);
+		arp.addMapping("wechatSysLogs", Logs.class);
 		arp.addMapping("wechatUserInfo", UserInfo.class);
 		arp.addMapping("wechatPublicAccount", PublicAccount.class);
+		arp.addMapping("wechatReqMsgLog", ReqMsgLog.class);
 	}
 	
 	/**

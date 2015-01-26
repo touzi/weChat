@@ -17,7 +17,7 @@ import com.touzi.wechat.model.SysUser;
  * @date 2014年11月27日 下午1:58:56 
  * @version V1.0 
  * 
- *mysql> describe wechatSysLog;
+ *mysql> describe wechatSysLogs;
 +-------------+--------------+------+-----+---------+----------------+
 | Field       | Type         | Null | Key | Default | Extra          |
 +-------------+--------------+------+-----+---------+----------------+
@@ -36,7 +36,7 @@ public class Logs extends Model<Logs> {
 	public static final Logs me = new Logs();
 	
 	public List<Logs> findAll() {
-		return find("select * from wechatSysLog order by id desc ");
+		return find("select * from wechatSysLogs order by id desc ");
 	}
 	
 	/**
