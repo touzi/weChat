@@ -9,14 +9,14 @@ import com.jfinal.plugin.activerecord.Model;
  * @author touzi 
  * @date 2015年1月15日 下午4:15:07 
  * @version V1.0 
- * mysql> describe wechatUserGroup;
-+--------+--------------+------+-----+---------+----------------+
-| Field  | Type         | Null | Key | Default | Extra          |
-+--------+--------------+------+-----+---------+----------------+
-| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
-| inTime | datetime     | YES  |     | NULL    |                |
-| name   | varchar(255) | YES  |     | NULL    |                |
-+--------+--------------+------+-----+---------+----------------+
+ * mysql> describe wechat_user_group;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| in_time | datetime     | YES  |     | NULL    |                |
+| name    | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
 3 rows in set
  */
 @SuppressWarnings("serial")

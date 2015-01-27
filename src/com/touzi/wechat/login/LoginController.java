@@ -88,7 +88,7 @@ public class LoginController extends Controller {
 		UserInfo userInfo = getModel(UserInfo.class);
 		PublicAccount publicAccount = getModel(PublicAccount.class);
 		sysUser.mySave();
-		publicAccount.mySave(sysUser.getInt("id"),sysUser.getStr("userName"));
+		publicAccount.mySave(sysUser.getInt("id"),sysUser.getStr("user_name"));
 		userInfo.mySave(sysUser.getInt("id"),publicAccount.getInt("id"));//同时写入userinfo表
 		Logs.logInfo(this.getSessionAttr("users"), getRequest(), "注册新用户->"+sysUser.getInt("id"));
 		setAttr("msg", "注册成功,请登录!");

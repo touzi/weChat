@@ -40,7 +40,7 @@
 <!--           </label> -->
 <!--         </div> -->
         <button class="btn btn-lg btn-primary btn-block" type="submit" 
-        onclick="showdiv('表达数据提交中<br/>请稍候........ <br/> ');">Sign in</button>
+        onclick="showdiv('正在登录中<br/>请稍候........ <br/> ');">Sign in</button>
       </form>
     </div>
 </body>

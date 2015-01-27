@@ -2,12 +2,12 @@
 <fieldset class="solid">
 	<legend>用户编辑</legend>
 	<input type="hidden" name="sysUser.id" value="${sysUser.id}" />
-	<input type="hidden" name="sysUser.inTime" value="${sysUser.inTime}" />
-	<input type="hidden" name="sysUser.phoneNo" value="${sysUser.phoneNo}" />
+	<input type="hidden" name="sysUser.in_time" value="${sysUser.in_time}" />
+	<input type="hidden" name="sysUser.phone_no" value="${sysUser.phone_no}" />
 	<input type="hidden" name="sysUser.score" value="${sysUser.score}" />
 	<div>
 		<label>用户名</label>
-		<input type="text" name="sysUser.userName" value="${sysUser.userName}" />${userNameMsg}
+		<input type="text" name="sysUser.user_name" value="${sysUser.user_name}" />${userNameMsg}
 	</div>
 	<div>
 		<label>密码</label>

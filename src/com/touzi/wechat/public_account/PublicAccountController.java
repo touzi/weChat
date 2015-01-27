@@ -29,7 +29,7 @@ public class PublicAccountController extends Controller {
 	public void update() {
 		PublicAccount publicAccount = getModel(PublicAccount.class);
 		publicAccount.myUpdate();
-		redirect("/admin");
+		redirect("/publicAccount");
 	}
 }
   

@@ -1,15 +1,15 @@
-jdbcUrl = jdbc:mysql://127.0.0.1/wechat?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+jdbcUrl = jdbc:mysql://127.0.0.1/touzi_wechat?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
 user = root
 password = 
 devMode = true
 
 # 微信服务器回调所用的 token
-token=wechat2zgc
+#token=wechat2zgc
 
 # 测试用的账号
-appId=wx8395cdf652ffcaad
-appSecret=29c16bb365d4bbc6f7709ccb887d8351
+#appId=wx8395cdf652ffcaad
+#appSecret=29c16bb365d4bbc6f7709ccb887d8351
 
 #是否对消息进行加密，是否对消息进行加密，对应于微信平台的消息加解密方式，false支持明文模式及兼容模式，true支持安全模式及兼容模式
-encryptMessage=true
-encodingAesKey=CSAmOaA7sPlv7wcnJKcrCSXeaIZhLxd7Fxh5RV8i4Vm
+#encryptMessage=true
+#encodingAesKey=CSAmOaA7sPlv7wcnJKcrCSXeaIZhLxd7Fxh5RV8i4Vm

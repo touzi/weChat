@@ -17,17 +17,17 @@ import com.touzi.wechat.model.SysUser;
  * @date 2014年11月27日 下午1:58:56 
  * @version V1.0 
  * 
- *mysql> describe wechatSysLogs;
-+-------------+--------------+------+-----+---------+----------------+
-| Field       | Type         | Null | Key | Default | Extra          |
-+-------------+--------------+------+-----+---------+----------------+
-| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
-| ip          | varchar(128) | YES  |     | NULL    |                |
-| userId      | int(11)      | NO   |     | NULL    |                |
-| userName    | varchar(200) | NO   |     | NULL    |                |
-| logDateTime | varchar(22)  | NO   |     | NULL    |                |
-| logInfo     | varchar(500) | NO   |     | NULL    |                |
-+-------------+--------------+------+-----+---------+----------------+
+ *mysql> describe wechat_sys_log;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| ip           | varchar(255) | YES  |     | NULL    |                |
+| user_id      | int(11)      | NO   |     | NULL    |                |
+| user_name    | varchar(255) | YES  |     | NULL    |                |
+| log_info     | longtext     | YES  |     | NULL    |                |
+| log_datetime | datetime     | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
 6 rows in set
  */
 @SuppressWarnings("serial")
@@ -36,7 +36,7 @@ public class Logs extends Model<Logs> {
 	public static final Logs me = new Logs();
 	
 	public List<Logs> findAll() {
-		return find("select * from wechatSysLogs order by id desc ");
+		return find("select * from wechat_sys_log order by id desc ");
 	}
 	
 	/**
@@ -48,11 +48,11 @@ public class Logs extends Model<Logs> {
 		String ip = GetIP4.getIpAddr(request);
 		if(users != null){
 			SysUser user = (SysUser) users;
-			me.set("ip", ip).set("userId", user.getInt("id")).set("userName", user.getStr("userName")).set("logDateTime", DateTools.getCurrentDate()).set("logInfo", info);
+			me.set("ip", ip).set("user_id", user.getInt("id")).set("user_name", user.getStr("user_name")).set("log_datetime", DateTools.getCurrentDate()).set("log_info", info);
 			me.save();
 			me.clear();
 		}else {
-			me.set("ip", ip).set("userId", 0).set("userName", "error").set("logDateTime", DateTools.getCurrentDate()).set("logInfo", info);
+			me.set("ip", ip).set("user_id", 0).set("user_name", "error").set("log_datetime", DateTools.getCurrentDate()).set("log_info", info);
 			me.save();
 			me.clear();
 		}

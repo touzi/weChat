@@ -23,7 +23,7 @@
 						class="glyphicon glyphicon-question-sign"></span></a></span>
 			</p>
 			<p id="step2">
-				2、<span class="step-info">从微信客户端向公众号发送：${publicAccount.validCode }&nbsp;<a
+				2、<span class="step-info">从微信客户端向公众号发送：${publicAccount.valid_code }&nbsp;<a
 					href="javascript:void(-1);"><span
 						class="glyphicon glyphicon-question-sign"></span></a></span>
 			</p>
@@ -33,10 +33,10 @@
 		</div>
 		<form class="form-horizontal" id="form-auth" action="/publicAccount/update" method="POST">
 			<input type="hidden" name="publicAccount.id" value="${publicAccount.id }" />
-			<input type="hidden" name="publicAccount.validState" value="2" />
-			<input type="hidden" name="publicAccount.inTime" value="${publicAccount.inTime }" />
-			<input type="hidden" name="publicAccount.validCode" value="${publicAccount.validCode}" />
-			<input type="hidden" name="publicAccount.sysUserId" value="${publicAccount.sysUserId}" />
+			<input type="hidden" name="publicAccount.valid_state" value="2" />
+			<input type="hidden" name="publicAccount.in_time" value="${publicAccount.in_time }" />
+			<input type="hidden" name="publicAccount.valid_code" value="${publicAccount.valid_code}" />
+			<input type="hidden" name="publicAccount.sys_user_id" value="${publicAccount.sys_user_id}" />
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="url">URL:</label>
 				<div class="col-sm-5">
@@ -57,7 +57,7 @@
 				<label class="col-sm-2 control-label" for="app_id">AppId:</label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="app_id"
-						name="publicAccount.appId" value="${publicAccount.appId }"> 
+						name="publicAccount.app_id" value="${publicAccount.app_id }"> 
 				</div>
 				<div>
 					<span class="col-sm-5 text-primary">未认证的订阅号可留空</span>
@@ -66,21 +66,21 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="app_secret">应用密钥:</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="app_secret" name="publicAccount.appSecret" value="${publicAccount.appSecret }"> 
+					<input type="text" class="form-control" id="app_secret" name="publicAccount.app_secret" value="${publicAccount.app_secret }"> 
 				</div>
 				<span class="col-sm-5 text-primary">未认证的订阅号可留空</span>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="app_secret">消息加解密密钥:</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="app_secret" name="publicAccount.encodingAESKey" value="${publicAccount.encodingAESKey }">
+					<input type="text" class="form-control" id="app_secret" name="publicAccount.encoding_aes_key" value="${publicAccount.encoding_aes_key }">
 				</div>
 				<span class="col-sm-5 text-primary">未启用消息加密可留空</span>
 			</div>
 			<br/>
 			<c:choose>
 				<c:when
-					test="${ 1 == publicAccount.validState || '1' eq publicAccount.validState }">
+					test="${ 1 == publicAccount.valid_state || '1' eq publicAccount.valid_state }">
 					<input style="margin-left: 180px;" class="btn btn-danger"
 						type="submit" id="btn-submit"data-loading-text="Loading..." autocomplete="off"
 						value="&nbsp;生&nbsp;成&nbsp;授&nbsp;权&nbsp;" />

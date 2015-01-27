@@ -71,11 +71,11 @@ public class WeixinConfig extends JFinalConfig {
 		me.add(arp);
 //		 EhCachePlugin ecp = new EhCachePlugin();
 //		 me.add(ecp);
-		arp.addMapping("wechatSysUser", SysUser.class);//映射wechatSysUser表到SysUser模型(映射名字必须与数据库表名一致)
-		arp.addMapping("wechatSysLogs", Logs.class);
-		arp.addMapping("wechatUserInfo", UserInfo.class);
-		arp.addMapping("wechatPublicAccount", PublicAccount.class);
-		arp.addMapping("wechatReqMsgLog", ReqMsgLog.class);
+		arp.addMapping("wechat_sys_user", SysUser.class);//映射wechat_sys_user表到SysUser模型(映射名字必须与数据库表名一致)
+		arp.addMapping("wechat_sys_log", Logs.class);
+		arp.addMapping("wechat_user_info", UserInfo.class);
+		arp.addMapping("wechat_public_account", PublicAccount.class);
+		arp.addMapping("wechat_req_msg_log", ReqMsgLog.class);
 	}
 	
 	/**

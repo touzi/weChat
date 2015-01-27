@@ -65,14 +65,14 @@ public class WeixinMsgController extends MsgController {
 		String urlValue = getPara();
 		pa = PublicAccount.me.findByweChat(urlValue);
 		ac.setToken(pa.getStr("token"));
-		ac.setAppId(pa.getStr("appId"));
-		ac.setAppSecret(pa.getStr("appSecret"));
-		if(null == pa.getStr("encodingAESKey") || "".equals(pa.getStr("encodingAESKey"))) {
+		ac.setAppId(pa.getStr("app_id"));
+		ac.setAppSecret(pa.getStr("app_secret"));
+		if(null == pa.getStr("encoding_aes_key") || "".equals(pa.getStr("encoding_aes_key"))) {
 			ac.setEncryptMessage(false);
 			ac.setEncodingAesKey("setting it in config file");
 		}else {
 			ac.setEncryptMessage(true);
-			ac.setEncodingAesKey(pa.getStr("encodingAESKey"));
+			ac.setEncodingAesKey(pa.getStr("encoding_aes_key"));
 		}
 		return ac;
 	}
@@ -122,7 +122,7 @@ public class WeixinMsgController extends MsgController {
 			render(outMsg);
 		}
 		//验证绑定
-		else if(pa.getStr("validCode").equalsIgnoreCase(msgContent)) {
+		else if(pa.getStr("valid_code").equalsIgnoreCase(msgContent)) {
 			String str = "验证成功!";
 			PublicAccount.me.accUpdate(pa, toUserName);
 			UserInfo.me.accUpdate(pa, toUserName, fromUserName);
