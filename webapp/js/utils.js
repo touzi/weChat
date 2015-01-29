@@ -1,4 +1,25 @@
 /**
+ * 页面加载是的onclick事件,jquery
+ */
+$(function () {
+	bgChecked();
+});
+
+/*
+ * 点击导航栏li加背景颜色
+ */
+function bgChecked() {
+	var url = window.location.href;
+	var u = url.split("/");
+	var menu = $("#menu ul li a");
+	for(var j = 0; j < menu.length; j++) {
+		if(url == menu[j].href){
+			$("#menu a[href='/"+u[3]+"']").parent("li").addClass('active'); 
+		}
+	}
+}
+
+/**
  * 1. 提交等待提示
  * 2. 使用直接在onclock中调用
  * onclick="showdiv('表达数据提交中<br/>请稍候........ <br/> ');"
@@ -83,7 +104,6 @@ function mykeydown()
     }
 } 
 
-
 /**
  * ----------------------------------------------------------------
  * 按钮防止重复提交
@@ -91,3 +111,4 @@ function mykeydown()
 $('#btn-submit').on('click', function () {
     var $btn = $(this).button('loading')
   });
+

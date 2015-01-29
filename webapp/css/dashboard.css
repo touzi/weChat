@@ -7,7 +7,6 @@ body {
   padding-top: 50px;
 }
 
-
 /*
  * Global add-ons
  */
@@ -57,7 +56,7 @@ body {
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
@@ -103,3 +102,28 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+/*
+ * 导航菜单样式
+ */
+.menu {
+	padding-top:6px;
+	*font-size:0;
+}
+.menu_title {
+	padding:0 5px 0;
+	width:auto;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	word-wrap:normal;
+	*font-size:14px;
+	color:#8d8d8d;
+}
+
+.icon_menu {
+	margin-right:10px;
+	margin-top:-0.2em;
+	*margin-top:0;
+}
+

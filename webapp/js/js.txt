@@ -1,0 +1,4 @@
+bootstrap	框架js
+jquery-1.11.2.min.js	jquery的js
+utils.js	跳转提示
+npm.js		登录页面

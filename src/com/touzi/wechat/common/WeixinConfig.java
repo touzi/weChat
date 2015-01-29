@@ -20,6 +20,7 @@ import com.jfinal.render.ViewType;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.touzi.log.Logs;
 import com.touzi.wechat.login.LoginInterceptor;
+import com.touzi.wechat.model.Material;
 import com.touzi.wechat.model.PublicAccount;
 import com.touzi.wechat.model.ReqMsgLog;
 import com.touzi.wechat.model.SysUser;
@@ -49,7 +50,7 @@ public class WeixinConfig extends JFinalConfig {
 		// ApiConfigKit 设为开发模式可以在开发阶段输出请求交互的 xml 与 json 数据
 		ApiConfigKit.setDevMode(me.getDevMode());
 		//设置404跳转页面
-		me.setError404View("_front/404.html");
+		me.setError404View("/_front/common/404.html");
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public class WeixinConfig extends JFinalConfig {
 		arp.addMapping("wechat_user_info", UserInfo.class);
 		arp.addMapping("wechat_public_account", PublicAccount.class);
 		arp.addMapping("wechat_req_msg_log", ReqMsgLog.class);
+		arp.addMapping("wechat_material", Material.class);
 	}
 	
 	/**
