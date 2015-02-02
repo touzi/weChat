@@ -13,6 +13,7 @@ public class AdminRoutes extends Routes {
 		add("/login", LoginController.class, "/_back/login");
 		add("/publicAccount",PublicAccountController.class,"/_back/publicAccount");
 		add("/material",MaterialController.class,"/_back/material");
+		add("/openApi",OpenApiController.class,"/openApi");
 	}
 	
 }

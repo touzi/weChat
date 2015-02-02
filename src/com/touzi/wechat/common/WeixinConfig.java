@@ -51,6 +51,7 @@ public class WeixinConfig extends JFinalConfig {
 		ApiConfigKit.setDevMode(me.getDevMode());
 		//设置404跳转页面
 		me.setError404View("/_front/common/404.html");
+		me.setError500View("/_front/common/500.html");
 	}
 	
 	/**

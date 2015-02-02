@@ -2,9 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/js/jquery-1.11.2.min.js"></script>
 <title>首页</title>
 </head>
 <body>
 	我是首页!!!
+	<input type="button" onclick="a()" value="test" />
 </body>
+<script type="text/javascript">
+	function a() {
+		$.ajax({
+			type : 'POST',
+			url : '/tempMsg/sendTemplateMsg/374cc05103898c28447a1a1256523d04',
+			data :'data={"touser":"oCOb0t8u-HNhII7srFkOO5uw0deg","template_id":"UbH0u5gE5WnbDR0XLBhqr0swpf04Ci5mX_-qavC4Bp4","url":"http://wexin.qq.com","topcolor":"#FF0000","data":{"first":{"value":"您好，曹晚，您有新的待处理事项","color":"#173177"},"keyword1":{"value":"请审批[深圳咨询实施部]fivest提交的流程：【企业微信申请】深圳蓝凌软件股份有限公司知识管理项目","color":"#173177"},"keyword2":{"value":"fivest","color":"#173177"},"keyword3":{"value":"2015-01-30 11:15:21","color":"#173177"},"remark":{"value":"请点击详情进行处理","color":"#173177"}}}',
+			dataType : 'json',
+			success: function(data,state){  
+				  //这里显示从服务器返回的数据  
+				  //alert(data);  
+				  //这里显示返回的状态  
+				  //alert(state);  
+				  }
+		});
+	}
+</script>
 </html>

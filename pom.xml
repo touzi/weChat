@@ -13,14 +13,6 @@
 		<version>7</version>
 	</parent>
 	
-	<repositories>
-	</repositories>
-	<scm>
-		<connection>scm:git:git@git.oschina.net:jfinal/jfinal-weixin.git</connection>
-		<developerConnection>scm:git:git@git.oschina.net:jfinal/jfinal-weixin.git</developerConnection>
-		<url>git@git.oschina.net:jfinal/jfinal-weixin.git</url>
-	</scm>
-	
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -164,7 +156,12 @@
 		<artifactId>log4j</artifactId>
 		<version>1.2.17</version>
 	</dependency>
-	
+	<dependency>
+  		<groupId>net.sf.json-lib</groupId>
+  		<artifactId>json-lib</artifactId>
+  		<version>2.4</version>
+  		<classifier>jdk15</classifier>
+	</dependency>
 	
   </dependencies>
   
