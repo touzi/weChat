@@ -54,11 +54,16 @@ public class OpenApiController extends ApiController {
 	 */
 	public void sendTemplateMsg() {
 		String jsonStr = getPara("data");
-		ApiResult apiResult = TemplateMsgApi.sendTemplateMsg(jsonStr);
-		if (apiResult.isSucceed())
-			renderText(apiResult.getJson());
-		else
-			renderText(apiResult.getErrorMsg());
+		System.out.println("=>"+jsonStr);
+		if(jsonStr != null && !"".equals(jsonStr)){
+			ApiResult apiResult = TemplateMsgApi.sendTemplateMsg(jsonStr);
+			if (apiResult.isSucceed())
+				renderText(apiResult.getJson());
+			else
+				renderText(apiResult.getErrorMsg());
+		}else {
+			renderText("Value is blank or null.");
+		}
 	}
 	
 	
